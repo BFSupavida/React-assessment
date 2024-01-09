@@ -1,7 +1,6 @@
 import Layout from "./Layout";
 
 function Owner() {
-    // const [currentRole,setCurrentRole] = useState('Admin');
     return(
         <Layout>
             <h1>BaiFern - Group B - 61</h1>

@@ -3,94 +3,115 @@ import Layout from "./Layout";
 import { useState } from "react";
 
 
-function HomeAdmin() {
-    const [data,setData] = useState({
-        name: "",
-        lastName: "",
-        position: ""
-      });
 
+function HomeAdmin({ employees,handleDeleteData,setEmployees }) {
+    //first solotion set from data 
+    // const [data, setData] = useState({
+    //     name: "",
+    //     lastName: "",
+    //     position: ""
+    // });
 
-      const [tableData, setTableData] = useState([]);
+    // const [tableData, setTableData] = useState([]);
 
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setData((prevData) => ({
-          ...prevData,
-          [name]: value
-        }));
-      };
-    
-      const handleSave = () => {
-        setTableData((prevTableData) => [...prevTableData, data]);
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setData((prevData) => ({
+    //         ...prevData,
+    //         [name]: value
+    //     }));
+    // };
 
-        // Reset the form data
-        setData({
-        name: '',
-        lastName: '',
-        position: '',
-        });
-      };
+    // const handleSave = () => {
+    //     setTableData((prevTableData) => [...prevTableData, data]);
 
-    const handleDeleteData = (index) => {
-    const updatedTableData = [...tableData];
-    updatedTableData.splice(index, 1);
-    setTableData(updatedTableData);
-  };
+    //     // Reset the form data
+    //     setData({
+    //         name: '',
+    //         lastName: '',
+    //         position: '',
+    //     });
+    // };
 
-    return(
-        <Layout>
-            <h1>Generation Thailand Home - Admin Sector</h1>
-            <Button />
+    //delete
+    // const handleDeleteData = (index) => {
+    //     const updatedTableData = [...tableData];
+    //     updatedTableData.splice(index, 1);
+    //     setTableData(updatedTableData);
+    // };
+
+    const [name,setName] = useState('');
+    const [lastname,setLastname] = useState('');
+    const [position,setPosition] = useState('');
+
+    const handleSave = () => {
+        const id = Math.floor(Math.random () *100)
+        const newEmployeesdata = {
+            id: id,
+            name: name,
+            lastname: lastname,
+            position: position,
+        }
+        //เอา employees แล้วต่อด้วย newEmployeesdata ที่เรา input เข้าไปใหม่
+        setEmployees([...employees,newEmployeesdata]);
+        setName('')
+        setLastname('')
+        setPosition('')
+    };
+
+    return (
+        <>
+            
+            {/* <Button /> */}
             <div>
                 <p>Create User Here</p>
-                <input 
-                    type="text" 
+                <input
+
+                    type="text"
                     placeholder="Name"
                     name="name"
-                    value={data.name}
-                    onChange={handleChange}
-                    />
-                <input 
-                    type="text" 
+                    value={name}
+                    onChange={ (e) => setName(e.target.value) }
+                />
+                <input
+                    type="text"
                     placeholder="Last Name"
                     name="lastName"
-                    value={data.lastName}
-                    onChange={handleChange}/>
-                    
-                <input 
-                    type="text" 
+                    value={lastname}
+                    onChange={(e) => setLastname(e.target.value) } />
+                <input
+                    type="text"
                     placeholder="Position"
                     name="position"
-                    value={data.position}
-                    onChange={handleChange}/>
+                    value={position}
+                    onChange={(e) => setPosition(e.target.value) } />
                 <button onClick={handleSave}>Save</button>
             </div>
             <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Last Name</th>
-                        <th>Position</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableData.map((data, index) => (
-                        <tr key={index}>
-                        <td>{data.name}</td>
-                        <td>{data.lastName}</td>
-                        <td>{data.position}</td>
-                        <td>
-                            <button  onClick={() => handleDeleteData(index)}>Delete</button>
-                        </td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Position</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {employees.map((data, index) => (
+                            <tr key={index}>
+                                <td>{data.name}</td>
+                                <td>{data.lastname}</td>
+                                <td>{data.position}</td>
+                                <td>
+                                    <button onClick={() => handleDeleteData(data.id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-        </Layout>
+        </>
     );
 }
 

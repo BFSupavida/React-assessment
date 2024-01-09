@@ -1,13 +1,7 @@
-import Button from "./Button";
-import Layout from "./Layout";
-
-function HomeUser() {
-    // //props from admin
-    // const employees = 
+function HomeUser({employees}) {
+    console.log(employees);
     return(
-        <Layout>
-            <h1>Generation Thailand Home - User Sector</h1>
-            <Button /> 
+            <>
             <table>
                 <thead>
                     <tr>
@@ -17,10 +11,16 @@ function HomeUser() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {} */}
+                    {employees.map((data, index) => (
+                        <tr key={index}>
+                        <td>{data.name}</td>
+                        <td>{data.lastname}</td>
+                        <td>{data.position}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
-        </Layout>
+            </>
     );
 }
 
