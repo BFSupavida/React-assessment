@@ -23,12 +23,12 @@ function Button( {setSector} ) {
 
 
     return (
-        <>
-            <button 
+        <div className="flex mt-12 gap-[180px]">
+            <button className="p-4 bg-white "
             onClick={ () => setSector('user') }>User Home Sector</button>
-            <button
+            <button className="p-4 bg-white "
             onClick={() => setSector('admin') }>Admin Home Sector</button> 
-        </>
+        </div>
     );
     
 }

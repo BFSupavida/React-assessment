@@ -2,18 +2,16 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <>
-      <nav>
-        <ul>
+      <nav className="p-4 flex justify-end border-b-[1px] border-black">
+        <ul className="flex gap-8">
           <li>
-            <a href={'/'}>Home</a>
+            <a className="font-bold" href={'/'}>Home</a>
           </li>
           <li>
-            <a href={'/owner'}>Owner</a>
+            <a className="font-bold" href={'/owner'}>Owner</a>
           </li>
         </ul>
       </nav>
-    </>
   );
 };
 
