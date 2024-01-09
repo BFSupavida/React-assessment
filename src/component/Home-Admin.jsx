@@ -10,6 +10,7 @@ function HomeAdmin() {
         position: ""
       });
 
+
       const [tableData, setTableData] = useState([]);
 
       const handleChange = (e) => {
@@ -31,11 +32,11 @@ function HomeAdmin() {
         });
       };
 
-//       const handleDelete = (id) => {
-//     // Filter out the data with the specified id
-//     const updatedTableData = tableData.filter((data) => data.id !== id);
-//     setTableData(updatedTableData);
-//   };
+    const handleDeleteData = (index) => {
+    const updatedTableData = [...tableData];
+    updatedTableData.splice(index, 1);
+    setTableData(updatedTableData);
+  };
 
     return(
         <Layout>
@@ -82,14 +83,13 @@ function HomeAdmin() {
                         <td>{data.lastName}</td>
                         <td>{data.position}</td>
                         <td>
-                            <button>Delete</button>
+                            <button  onClick={() => handleDeleteData(index)}>Delete</button>
                         </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             </div>
-            {/* <button>Delete</button> */}
         </Layout>
     );
 }
