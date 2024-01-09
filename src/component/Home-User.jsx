@@ -2,6 +2,8 @@ import Button from "./Button";
 import Layout from "./Layout";
 
 function HomeUser() {
+    // //props from admin
+    // const employees = 
     return(
         <Layout>
             <h1>Generation Thailand Home - User Sector</h1>
